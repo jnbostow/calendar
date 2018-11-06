@@ -10,197 +10,147 @@
     <title>What is the next tech event in Seattle?</title>
 </head>
 <body>
-    <div class="wrapper">
-        <header class="global-header">
-            <div class="title-and-navi">
-			    <div id="website-title">
-			        <a href="index.html" target="_top">What is the next tech event in Seattle?</a>
-			    </div>
-			    <nav role="navigation" class="global-nav">
-                    <div class="small-nav-open-icon">
-                        <i class="material-icons small-nav-open-icon">dehaze</i>
-                        Menu
+<div class="wrapper">
+
+
+    <main id="index-main" class="app">
+        <!-- code to toggle classes -->
+
+        <!--displays before API data loads-->
+        <!--<div class="loader"></div>-->
+
+        <label class="switch">
+            <input id="toggleButton" type="checkbox">
+            <span class="slider round"></span>
+        </label>
+
+        <section id= "listView" class="cal-eventList">
+
+            <h3>We find these tech events match your interests:</h3>
+            <div class="event-list-view">
+
+                <section id="events">
+                    <!-- call Eventbrite api to get a list of events by filters -->
+                </section>
+            </div>
+        </section>
+
+
+    </main>
+    <aside id="filters">
+        <!--only displays in small view so filters can toggle-->
+        <div class="small-view-filter">
+            <span class="filter-link">Add Filters<i class="material-icons">expand_more</i></span>
+        </div>
+        <div class="filter-container">
+            <!-- <h1>Event Filter</h1> -->
+            <form id="filters-type" class="submit_filters" method="post">
+                <fieldset>
+                    <legend>Event Filter </legend>
+                    <p> </p>
+                    <h4>By Date</h4>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-date-today" name="start_date.keyword" value="today">
+                        <label for="filter-date-today">Today</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-date-tomorrow" name="start_date.keyword" value="tomorrow">
+                        <label for="filter-date-tomorrow">Tomorrow</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-date-thisWeek" name="start_date.keyword" value="this_week" >
+                        <label for="filter-date-thisWeek">This Week</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-date-thisMonth" name="start_date.keyword" value="this_month">
+                        <label for="filter-date-thisMonth">This Month</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-date-any" name="start_date.keyword" value="" checked>
+                        <label for="filter-date-any">In the Near Future</label>
+                    </div>
+                    <p> </p>
+                    <h4>By Price</h4>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-price-free" name="price" value="free">
+                        <label for="filter-price-free">Free</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-price-paid" name="price" value="paid">
+                        <label for="filter-price-paid">Paid</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-price-dontcare" name="price" value="" checked>
+                        <label for="filter-price-dontcare">I Don't Care</label>
+                    </div>
+                    <p> </p>
+                    <h4>By Neighborhood</h4>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-neighborhood-capitalhill" name="location.address" value="Capitol_Hill-Seattle">
+                        <label for="filter-neighborhood-capitalhill">Capitol Hill</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-neighborhood-downtown" name="location.address" value="Downtown-Seattle">
+                        <label for="filter-neighborhood-downtown">Downtown</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-neighborhood-belltown" name="location.address" value="Belltown-Seattle">
+                        <label for="filter-neighborhood-belltown">Belltown</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="radio" id="filter-neighborhood-seattle" name="location.address" value="Seattle" checked>
+                        <label for="filter-neighborhood-seattle">Great Seattle Area</label>
+                    </div>
+                    <p> </p>
+                    <h4>By Tag(s)</h4>
+                    <div class="filter-item">
+                        <input type="checkbox" id="filter-tag-new" name="q" value="tech-new_in" >
+                        <label for="filter-tag-new">New In Tech</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="filter-tag-women" name="q" value="tech-women">
+                        <label for="filter-tag-women">Women In Tech</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="filter-tag-frontend" name="q" value="Web_Development" >
+                        <label for="filter-tag-frontend">Web Development</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="filter-ctg-education" name="q" value="tech-education">
+                        <label for="filter-ctg-education">Education</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="filter-ctg-sport" name="q" value="tech-sport">
+                        <label for="filter-ctg-sport">Sport</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="filter-ctg-fashion" name="q" value="tech-fashion">
+                        <label for="filter-ctg-fashion">Fashion</label>
+                    </div>
+                    <div class="filter-item">
+                        <input type="checkbox" id="filter-ctg-business" name="q" value="tech-business">
+                        <label for="filter-ctg-business">Business</label>
                     </div>
 
-                    <div id="navigation">
-                        <i class="material-icons small-nav-close-icon">clear</i>
-                        <ul>
-                            <li><a href = # target = "_self">Home</a></li>
-                            <li><a href = "signup_page.html" target = "_self">Sign Up</a></li>
-                            <li><a href = "login.html" target = "_self">Login</a></li>
-                            <li><a href = "submission_page.html" target = "_self">Submit Event</a></li>
-                            <li><a href = "about_page.html" target = "_self">About Us</a></li>
-                        </ul>
+                    <p> </p>
+                    <div>
+                        <!-- 						      <button type="submit" value="submit">
+                                                          Submit
+                                                      </button> -->
+                        <input type = "submit", value="Submit">
                     </div>
-			    </nav>
-			</div>
-        </header>
-
-        <main id="index-main">
-            <!-- code to toggle classes -->
-            
-            <!--displays before API data loads-->
-            <div class="loader"></div>
-
-            <label class="switch">
-                <input id="toggleButton" type="checkbox">
-                <span class="slider round"></span>
-            </label>
-
-            <section id= "listView" class="cal-eventList">
-
-                <h3>We find these tech events match your interests:</h3>
-                <div class="event-list-view">
-                
-	                <section id="events">
-	                <!-- call Eventbrite api to get a list of events by filters -->	
-	                </section>
-                </div>
-            </section>
-
-            <section id= "calendar-view">
-                <div class="cal-nav">
-                    <i class="material-icons cal-nav-back">navigate_before</i>
-                    <h2> <!-- Name of Month --> </h2>
-                    <i class="material-icons cal-nav-forward">navigate_next</i>
-                </div>
-
-                <div class="modal">
-                    <div class="modal-content"></div>
-                </div>
-
-                <div class="cal-row-header">
-                    <span>SUNDAY</span>
-                    <span>MONDAY</span>
-                    <span>TUESDAY</span>
-                    <span>WEDNESDAY</span>
-                    <span>THURSDAY</span>
-                    <span>FRIDAY</span>
-                    <span>SATURDAY</span>
-                </div>
-                <div class="cal-days toggle-hover">
-                    <!--calendar.js to fill in grid based on current day-->
-                </div>
-            </section>
-
-
-        </main>
-        <aside id="filters">
-            <!--only displays in small view so filters can toggle-->
-            <div class="small-view-filter">
-                <span class="filter-link">Add Filters<i class="material-icons">expand_more</i></span>
-            </div>
-            <div class="filter-container">
-                <!-- <h1>Event Filter</h1> -->
-                <form id="filters-type" class="submit_filters" method="post">
-                	<fieldset>
-  					<legend>Event Filter </legend>
-  						<p> </p>
-	                    <h4>By Date</h4>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-date-today" name="start_date.keyword" value="today">
-	                            <label for="filter-date-today">Today</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-date-tomorrow" name="start_date.keyword" value="tomorrow">
-	                            <label for="filter-date-tomorrow">Tomorrow</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-date-thisWeek" name="start_date.keyword" value="this_week" >
-	                            <label for="filter-date-thisWeek">This Week</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-date-thisMonth" name="start_date.keyword" value="this_month">
-	                            <label for="filter-date-thisMonth">This Month</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-date-any" name="start_date.keyword" value="" checked>
-	                            <label for="filter-date-any">In the Near Future</label>
-	                        </div>
-	                        <p> </p>
-	                    <h4>By Price</h4>
-	                    	<div class="filter-item">
-	                            <input type="radio" id="filter-price-free" name="price" value="free">
-	                            <label for="filter-price-free">Free</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-price-paid" name="price" value="paid">
-	                            <label for="filter-price-paid">Paid</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-price-dontcare" name="price" value="" checked>
-	                            <label for="filter-price-dontcare">I Don't Care</label>
-	                        </div>
-	                        <p> </p>
-	                    <h4>By Neighborhood</h4>
-	                    	<div class="filter-item">
-	                            <input type="radio" id="filter-neighborhood-capitalhill" name="location.address" value="Capitol_Hill-Seattle">
-	                            <label for="filter-neighborhood-capitalhill">Capitol Hill</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-neighborhood-downtown" name="location.address" value="Downtown-Seattle">
-	                            <label for="filter-neighborhood-downtown">Downtown</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-neighborhood-belltown" name="location.address" value="Belltown-Seattle">
-	                            <label for="filter-neighborhood-belltown">Belltown</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="radio" id="filter-neighborhood-seattle" name="location.address" value="Seattle" checked>
-	                            <label for="filter-neighborhood-seattle">Great Seattle Area</label>
-	                        </div>
-	                        <p> </p>
-	                    <h4>By Tag(s)</h4>
-	                    	<div class="filter-item">
-	                            <input type="checkbox" id="filter-tag-new" name="q" value="tech-new_in" >
-	                            <label for="filter-tag-new">New In Tech</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="checkbox" id="filter-tag-women" name="q" value="tech-women">
-	                            <label for="filter-tag-women">Women In Tech</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="checkbox" id="filter-tag-frontend" name="q" value="Web_Development" >
-	                            <label for="filter-tag-frontend">Web Development</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="checkbox" id="filter-ctg-education" name="q" value="tech-education">
-	                            <label for="filter-ctg-education">Education</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="checkbox" id="filter-ctg-sport" name="q" value="tech-sport">
-	                            <label for="filter-ctg-sport">Sport</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="checkbox" id="filter-ctg-fashion" name="q" value="tech-fashion">
-	                            <label for="filter-ctg-fashion">Fashion</label>
-	                        </div>
-	                        <div class="filter-item">
-	                            <input type="checkbox" id="filter-ctg-business" name="q" value="tech-business">
-	                            <label for="filter-ctg-business">Business</label>
-	                        </div>                    
-
-	                        <p> </p>
-	                        <div>
-<!-- 						      <button type="submit" value="submit">
-						      	Submit
-						      </button> -->
-						      <input type = "submit", value="Submit">
-						    </div>
-					</fieldset>
-                </form>
-            </div>
-        </aside>
-        <footer>
-            <div class="copywrite">
-                &copy; 2018<script>new Date().getFullYear()>2018&&document.write("-"+new Date().getFullYear());</script> Udacity GwG Washington State Team
-            </div>
-        </footer>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="./javascripts/scripts.js"></script>
-    <script src="./javascripts/calendar.js"></script>
-    <script src="./javascripts/details.js"></script>
-    <script src="./javascripts/about.js"></script>
+                </fieldset>
+            </form>
+        </div>
+    </aside>
+    <footer>
+        <div class="copywrite">
+            &copy; 2018<script>new Date().getFullYear()>2018&&document.write("-"+new Date().getFullYear());</script> Udacity GwG Washington State Team
+        </div>
+    </footer>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="./javascripts/script.js"></script>
+<script src="./javascripts/newCalendar.js"></script>
 </body>
 </html>

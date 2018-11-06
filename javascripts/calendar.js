@@ -1,3 +1,48 @@
+function model() {
+    const calendarContainer = document.createElement('section')
+    calendarContainer.id = 'calendar-view'
+    calendarContainer.innerHTML = 
+        `<div class="cal-nav">
+            <i class="material-icons cal-nav-back">navigate_before</i>
+            <h2> <!-- Name of Month --> </h2>
+            <i class="material-icons cal-nav-forward">navigate_next</i>
+        </div>
+
+        <div class="modal">
+            <div class="modal-content"></div>
+        </div>
+
+        <div class="cal-row-header">
+            <span>SUNDAY</span>
+            <span>MONDAY</span>
+            <span>TUESDAY</span>
+            <span>WEDNESDAY</span>
+            <span>THURSDAY</span>
+            <span>FRIDAY</span>
+            <span>SATURDAY</span>
+        </div>
+        <div class="cal-days toggle-hover">
+            <!--calendar.js to fill in grid based on current day-->
+        </div>`
+
+    const navBack = calendarContainer.querySelector('.cal-nav-back');
+
+    navBack.click(function() {
+        let backDate;
+
+        date.setDate(15); //set to the 15th to avoid issue from diff month length
+        date.setMonth(date.getMonth()-1);
+        backDate = date;
+        createCalendar(backDate, $monthHeader, $calendarDaysGrid);
+    });
+
+
+    const hook = document.getElementById('app');
+    hook.appendChild(calendarContainer);
+}
+//model();
+
+
 let date = new Date();
 let today = new Date();
 let $monthHeader = $('#calendar-view h2');

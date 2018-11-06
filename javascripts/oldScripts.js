@@ -70,7 +70,7 @@ function getEvents(token,sltFilters,$events,$loader) {
             sessionStorage.setItem('briteEventsByMonth', JSON.stringify(briteEventByMonthObject(res.events)));
             sessionStorage.setItem('briteEvents', JSON.stringify(res.events));
             $loader.css('display','none');
-            createCalendar(date, $monthHeader, $calendarDaysGrid);
+            //createCalendar(date, $monthHeader, $calendarDaysGrid);
 
             for(let i=0;i<res.events.length;i++) {
                 let event = res.events[i];
@@ -112,7 +112,7 @@ function getSelectedFilters() {
     let selectFilters = '&';
     selectFilters += str;
     selectFilters +="&";
-
+console.log('serialized: ', selectFilters)
     return selectFilters;
 
 };
