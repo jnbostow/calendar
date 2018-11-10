@@ -1,0 +1,345 @@
+/* global styles */
+@import url('https://fonts.googleapis.com/css?family=Mina');
+
+body {
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2A3E49;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.5em;
+    background-color: #fafafa;
+}
+
+h1 {
+    font-size: 150%;
+    font-weight: bold;
+    color:#000000FF;
+}
+
+/*Event List formats*/
+#event-name {
+    font-family: 'Mina', sans-serif;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+/* in all sizes smaller than desktop, do not show the calendar */
+/* and do not give toggle to switch to calendar */
+/* show list view by default */
+@media only screen and (max-width: 991px) {
+    #listView {
+        display: block;
+    }
+
+    #calendar-view {
+        display: none;
+    }
+
+    .switch {
+        display: none;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* show calendar by default and provide switch */
+@media only screen and (min-width: 992px) {
+    #calendar-view {
+        display: block;
+    }
+    .switch {
+        display: block;
+    }
+    #listView {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .toggle-display-small-view {
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        word-wrap: break-word;
+    }
+    .details-wrapper {
+        flex-direction: column;
+    }
+}
+
+.cal-eventList {
+    height: auto;
+    width: 100%;
+    background-color:#FFFFFFFF;
+    display: none;
+}
+
+#calendar-view {
+    width: 100%;
+}
+
+.cal-nav {
+    text-align: center;
+}
+
+.cal-nav h2 {
+    display: inline-block;
+    font-size: 1.5em;
+    margin: .6em .8em;
+}
+
+.cal-nav i {
+    vertical-align: text-bottom;
+    cursor: pointer;
+}
+
+.cal-row-header {
+    text-align: center;
+}
+
+.cal-days, .cal-row-header {
+    display: flex;
+    flex-flow: wrap;
+    height: 100%;
+    width: 100%;
+}
+
+.cal-row-header span, #calendar-view time {
+    width: 13.88%; /* 100% / 7.25 */
+    margin: .23148%; /* .25% / 12 */
+    box-sizing: border-box;
+    background-color: white;
+}
+
+/*#calendar-view time:nth-last-child(35),*/
+/*#calendar-view time:nth-last-child(35) ~ time {*/
+    /*min-height: 19.0476%;!* 100% / 5.25 *!*/
+/*}*/
+
+/*#calendar-view time:nth-last-child(42),*/
+/*#calendar-view time:nth-last-child(42) ~ time {*/
+    /*min-height: 16%;!* 100% / 6.25 *!*/
+/*}*/
+
+#calendar-view time {
+    position: relative;
+    height: 108px;
+    border-radius: .25em;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform .2s;
+}
+
+#calendar-view .toggle-hover time[data-event-count]:hover {
+    transform: scale(1.08);
+    cursor: pointer;
+}
+
+#calendar-view time:not([datetime]) {
+    background-color: rgba(27,178,78,.1);
+    box-shadow: none;
+}
+
+#calendar-view time:nth-of-type(7n),
+.cal-row-header span:last-child {
+    margin-right: 0;
+}
+
+#calendar-view time:nth-of-type(7n +1),
+.cal-row-header span:first-child {
+    margin-left: 0;
+}
+
+#calendar-view time .date-num {
+    background-color: rgba(27,178,78,.7);
+    color: rgb(253,253,253);
+    padding-left: 5px;
+    padding-bottom: 3px;
+}
+
+
+/* list view */
+.event-list-view-hidden {
+    visibility: hidden;
+}
+
+.event-list-view {
+    width: 90%;
+    min-height: auto;
+    overflow: inherit;
+}
+
+.event-details {
+    overflow: hidden;
+}
+
+.event-details ul {
+    padding: 0;
+    margin: .4em;
+}
+
+.event-details li {
+    font-size: 10px;
+    list-style-type: none;
+    line-height: 1.3em;
+}
+
+.event-display-count-container {
+    position: absolute;
+    display: table;
+    color: #04040440;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), white,white);
+    height: 2.3em;
+    width: 100%;
+}
+
+.event-display-count {
+    text-align: right;
+    margin: auto;
+    display: table-cell;
+    vertical-align: bottom;
+    font-size: 10px;
+}
+
+.event-display-count .material-icons {
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+/*changing to using # of events, keeping incase this changes*/
+.event-details li:not(:last-child)::after {
+    content: "";
+    border-bottom: solid 1px lightgray;
+    display: block;
+    width: 95%;
+    margin: .3em auto;
+}
+
+.event-time {
+    display: none;
+}
+
+.event-name-long {
+    display: none;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    border-radius: .4em;
+    box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    width: 25vw;
+    min-height: 250px;
+    height: 40%; /*need to make scroll work*/
+}
+
+.modal-content .date-num {
+    background-color: rgba(27,178,78,.7);
+    color: rgb(253,253,253);
+    padding: 10px 0px 10px 15px;
+    font-size: 2em;
+}
+
+.modal .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 35px;
+    color: white;
+    margin: 6px 10px;
+}
+.modal .close:hover {
+    color: #aaa;
+    cursor: pointer;
+}
+
+.modal-content .event-details {
+    overflow: auto;
+    height: 80%;
+}
+
+.modal-content ul {
+    margin: 1em;
+}
+
+.modal-content li {
+    display: flex;
+    flex-flow: row;
+    font-size: 12px;
+    margin: .75em auto;
+}
+
+/*removed events in cal view, keeping incase this changes*/
+.modal-content li:not(:last-child)::after {
+    content: none;
+}
+
+/*removed to have num of events in cal view instead.  keeping incase this changes*/
+.modal-content .event-name-short {
+    display: none;
+}
+
+.modal-content .event-time {
+    display: inline-block;
+    flex: 0 0 20%;
+}
+
+.modal-content .event-name-long {
+    display: inline-block;
+    flex: 0 1 auto;
+}
+
+.modal-content .event-display-count-container {
+    display: none;
+}
+
+/* displays with animation until API data loads */
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid rgba(27,178,78,.7); /* green */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    /* center loader in middle of cal/list */
+    position: absolute;
+    /*position: static;*/
+    margin: auto;
+    top: 20%;
+    left: 0;
+    right: 0;
+    z-index: 5;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
