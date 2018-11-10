@@ -18,67 +18,6 @@ h1 {
     color:#000000FF;
 }
 
-/*Event List formats*/
-#event-name {
-    font-family: 'Mina', sans-serif;
-    font-weight: bold;
-    font-size: 110%;
-}
-
-/* in all sizes smaller than desktop, do not show the calendar */
-/* and do not give toggle to switch to calendar */
-/* show list view by default */
-@media only screen and (max-width: 991px) {
-    #listView {
-        display: block;
-    }
-
-    #calendar-view {
-        display: none;
-    }
-
-    .switch {
-        display: none;
-    }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-/* show calendar by default and provide switch */
-@media only screen and (min-width: 992px) {
-    #calendar-view {
-        display: block;
-    }
-    .switch {
-        display: block;
-    }
-    #listView {
-        display: none;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    .toggle-display-small-view {
-        display: block;
-    }
-
-}
-
-@media screen and (max-width: 768px) {
-    body {
-        word-wrap: break-word;
-    }
-    .details-wrapper {
-        flex-direction: column;
-    }
-}
-
-.cal-eventList {
-    height: auto;
-    width: 100%;
-    background-color:#FFFFFFFF;
-    display: none;
-}
-
 #calendar-view {
     width: 100%;
 }
@@ -100,17 +39,15 @@ h1 {
 
 .cal-row-header {
     text-align: center;
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
-    height: 100%;
-    width: 100%;
 }
 
-.cal-days {
+.cal-days,.cal-row-header {
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     /*grid-template-rows: repeat(5, auto);*/
     grid-gap: 6px;
+    padding: 10px;
     height: 100%;
     width: 100%;
 }
@@ -164,18 +101,6 @@ h1 {
     color: rgb(253,253,253);
     padding-left: 5px;
     padding-bottom: 3px;
-}
-
-
-/* list view */
-.event-list-view-hidden {
-    visibility: hidden;
-}
-
-.event-list-view {
-    width: 90%;
-    min-height: auto;
-    overflow: inherit;
 }
 
 .event-details {
@@ -346,4 +271,20 @@ h1 {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@media screen and (max-width: 600px) {
+    .modal-content {
+        height: 80vh;
+        width: 80vw;
+    }
+    .cal-row-header {
+        display: none;
+    }
+    .cal-days {
+        grid-template-columns: auto;
+    }
+    time:not([data-event-count]) {
+        display: none;
+    }
 }
