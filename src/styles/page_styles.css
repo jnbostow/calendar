@@ -100,18 +100,22 @@ h1 {
 
 .cal-row-header {
     text-align: center;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    height: 100%;
+    width: 100%;
 }
 
-.cal-days, .cal-row-header {
-    display: flex;
-    flex-flow: wrap;
+.cal-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    /*grid-template-rows: repeat(5, auto);*/
+    grid-gap: 6px;
     height: 100%;
     width: 100%;
 }
 
 .cal-row-header span, #calendar-view time {
-    width: 13.88%; /* 100% / 7.25 */
-    margin: .23148%; /* .25% / 12 */
     box-sizing: border-box;
     background-color: white;
 }
