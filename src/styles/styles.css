@@ -37,10 +37,6 @@ h1 {
     cursor: pointer;
 }
 
-.cal-row-header {
-    text-align: center;
-}
-
 .cal-days,.cal-row-header {
     box-sizing: border-box;
     display: grid;
@@ -50,6 +46,12 @@ h1 {
     padding: 10px;
     height: 100%;
     width: 100%;
+}
+
+.cal-row-header {
+    text-align: center;
+    padding-bottom: 0;
+    padding-top: 0;
 }
 
 .cal-row-header span, #calendar-view time {
